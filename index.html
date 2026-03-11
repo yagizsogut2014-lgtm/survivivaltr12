@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SurvivalTR | Gerçek Hayatta Kalma Deneyimi</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">SURVIVAL<span>TR</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Ana Sayfa</a></li>
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#">Mağaza</a></li>
+                <li><a href="#">Wiki</a></li>
+            </ul>
+            <a href="https://discord.gg/survivaltr" class="discord-btn">Discord'a Katıl</a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>VAHŞİ DOĞANIN <span>HAKİMİ</span> OL</h1>
+            <p>Türkiye'nin en gelişmiş sistemlerine sahip, adil ve sürükleyici survival macerası seni bekliyor.</p>
+            
+            <div class="ip-container" onclick="copyIP()">
+                <span id="server-ip">PLAY.SURVIVALTR.COM</span>
+                <div class="copy-hint">IP Kopyalamak İçin Tıkla</div>
+            </div>
+
+            <div class="stats">
+                <span class="online-dot"></span> <b>124</b> Oyuncu Aktif
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Neden Biz?</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Gelişmiş Koruma</h3>
+                    <p>Özel geliştirilmiş claim ve koruma sistemleri ile emeklerin güvende.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💰</div>
+                    <h3>Dengeli Ekonomi</h3>
+                    <p>Oyuncu odaklı market ve adil ticaret sistemi ile gerçek rekabet.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚔️</div>
+                    <h3>Özel Etkinlikler</h3>
+                    <p>Haftalık turnuvalar, ödüllü görevler ve devasa boss savaşları.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SurvivalTR. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ip = document.getElementById('server-ip').innerText;
+            navigator.clipboard.writeText(ip);
+            alert("Sunucu adresi kopyalandı: " + ip);
+        }
+    </script>
+</body>
+</html>
