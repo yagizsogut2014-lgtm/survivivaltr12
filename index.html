@@ -3,74 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SurvivalTR | Gerçek Hayatta Kalma Deneyimi</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>SurvivalTR | Efsanevi Hayatta Kalma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2ecc71; /* Zümrüt Yeşili */
+            --primary-glow: rgba(46, 204, 113, 0.4);
+            --bg-dark: #0a0a0a;
+            --card-bg: #151515;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navigasyon --- */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 80px;
+            display: flex; align-items: center; justify-content: space-around;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo { font-size: 1.8rem; font-weight: 900; letter-spacing: 2px; }
+        .logo span { color: var(--primary); }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { 
+            text-decoration: none; color: var(--text-dim); 
+            font-weight: 500; transition: 0.3s; 
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* --- Hero Alanı --- */
+        .hero {
+            height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(46, 204, 113, 0.15) 0%, transparent 70%), url('https://files.facepunch.com/sbox/1/2023/10/11/rust_hero.jpg');
+            background-size: cover; background-position: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900; line-height: 1; margin-bottom: 20px;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 span {
+            display: block; color: var(--primary);
+            filter: drop-shadow(0 0 15px var(--primary-glow));
+        }
+
+        .hero p {
+            max-width: 600px; color: var(--text-dim); font-size: 1.1rem; margin-bottom: 40px;
+        }
+
+        /* --- IP Kopyalama Kutusu --- */
+        .copy-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 30px; border-radius: 50px;
+            border: 2px solid var(--primary);
+            cursor: pointer; position: relative;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .copy-box:hover { transform: scale(1.05); background: var(--primary); }
+        .copy-box:hover #ip-text { color: #000; }
+        .copy-box:hover .copy-icon { color: #000; }
+
+        #ip-text { font-weight: 900; font-size: 1.4rem; letter-spacing: 1px; }
+        .copy-icon { margin-left: 10px; color: var(--primary); }
+
+        /* --- Özellik Kartları --- */
+        .features { padding: 100px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .card {
+            background: var(--card-bg); padding: 40px; border-radius: 20px;
+            text-align: center; border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+
+        .card:hover { 
+            border-color: var(--primary); 
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card i { font-size: 3rem; color: var(--primary); margin-bottom: 20px; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+        .card p { color: var(--text-dim); line-height: 1.6; }
+
+        /* --- Alt Kısım --- */
+        footer { padding: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); }
+
+        /* --- Animasyonlar --- */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: 1s ease-out forwards; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Mobil Düzenleme */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">SURVIVAL<span>TR</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Ana Sayfa</a></li>
-                <li><a href="#features">Özellikler</a></li>
-                <li><a href="#">Mağaza</a></li>
-                <li><a href="#">Wiki</a></li>
-            </ul>
-            <a href="https://discord.gg/survivaltr" class="discord-btn">Discord'a Katıl</a>
-        </div>
+    <nav>
+        <div class="logo">SURVIVAL<span>TR</span></div>
+        <ul class="nav-links">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Mağaza</a></li>
+            <li><a href="#">Sıralama</a></li>
+            <li><a href="#">Wiki</a></li>
+        </ul>
+        <a href="#" class="copy-box" style="padding: 10px 20px; border-radius: 10px; font-size: 0.8rem;">
+            <i class="fab fa-discord"></i> DISCORD
+        </a>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <h1>VAHŞİ DOĞANIN <span>HAKİMİ</span> OL</h1>
-            <p>Türkiye'nin en gelişmiş sistemlerine sahip, adil ve sürükleyici survival macerası seni bekliyor.</p>
-            
-            <div class="ip-container" onclick="copyIP()">
-                <span id="server-ip">PLAY.SURVIVALTR.COM</span>
-                <div class="copy-hint">IP Kopyalamak İçin Tıkla</div>
-            </div>
-
-            <div class="stats">
-                <span class="online-dot"></span> <b>124</b> Oyuncu Aktif
-            </div>
+    <section class="hero">
+        <h1 class="fade-in">GERÇEK <span>HAYATTA KALMA</span></h1>
+        <p class="fade-in">Strateji, beceri ve güç. SurvivalTR dünyasında kendi krallığını kurmaya hazır mısın?</p>
+        
+        <div class="copy-box fade-in" id="copyBtn" onclick="copyToClipboard()">
+            <span id="ip-text">PLAY.SURVIVALTR.COM</span>
+            <i class="fas fa-copy copy-icon"></i>
         </div>
-    </header>
 
-    <section id="features" class="features">
-        <div class="container">
-            <h2 class="section-title">Neden Biz?</h2>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon">🛡️</div>
-                    <h3>Gelişmiş Koruma</h3>
-                    <p>Özel geliştirilmiş claim ve koruma sistemleri ile emeklerin güvende.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💰</div>
-                    <h3>Dengeli Ekonomi</h3>
-                    <p>Oyuncu odaklı market ve adil ticaret sistemi ile gerçek rekabet.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⚔️</div>
-                    <h3>Özel Etkinlikler</h3>
-                    <p>Haftalık turnuvalar, ödüllü görevler ve devasa boss savaşları.</p>
-                </div>
-            </div>
+        <div class="fade-in" style="margin-top: 25px; font-weight: bold;">
+            <i class="fas fa-users" style="color: var(--primary);"></i> <span id="player-count">124</span> OYUNCU ÇEVRİMİÇİ
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="card fade-in">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Kayıpsız Koruma</h3>
+            <p>Gelişmiş claim sistemimiz ve anti-grief önlemlerimizle tüm yapılarınız 7/24 güvende.</p>
+        </div>
+        <div class="card fade-in">
+            <i class="fas fa-coins"></i>
+            <h3>Dinamik Ekonomi</h3>
+            <p>Oyuncular arası ticaretin döndüğü, dengeli ve sömürüsüz bir market sistemi.</p>
+        </div>
+        <div class="card fade-in">
+            <i class="fas fa-dragon"></i>
+            <h3>Özel Zindanlar</h3>
+            <p>Sadece en güçlülerin hayatta kalabileceği boss savaşları ve gizemli ödüller.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 SurvivalTR. Tüm Hakları Saklıdır.</p>
+        <p>2026 &copy; SurvivalTR Network - Tüm Hakları Saklıdır.</p>
     </footer>
 
     <script>
-        function copyIP() {
-            const ip = document.getElementById('server-ip').innerText;
+        // Kopyalama Fonksiyonu
+        function copyToClipboard() {
+            const ip = "play.survivaltr.com";
             navigator.clipboard.writeText(ip);
-            alert("Sunucu adresi kopyalandı: " + ip);
+            
+            const btn = document.getElementById('copyBtn');
+            const originalText = document.getElementById('ip-text').innerText;
+            
+            document.getElementById('ip-text').innerText = "IP KOPYALANDI!";
+            setTimeout(() => {
+                document.getElementById('ip-text').innerText = originalText;
+            }, 2000);
         }
+
+        // Kaydırma Animasyonu (Scroll Reveal)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
